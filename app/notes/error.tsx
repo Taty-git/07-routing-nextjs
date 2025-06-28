@@ -1,0 +1,26 @@
+'use client';
+
+import css from './NotesPage.module.css';
+
+type ErrorProps = {
+  error: Error;
+  reset: () => void;
+};
+
+const Error = ({ error, reset }: ErrorProps) => {
+  return (
+    <>
+    <div className={css.error}>
+        <p>
+            Something went wrong. <br />
+            {error.message}
+        </p>
+        <button className={css.button} onClick={() => reset()}>
+            Спробувати ще раз
+        </button>
+    </div>
+    </>
+  );
+};
+
+export default Error;
