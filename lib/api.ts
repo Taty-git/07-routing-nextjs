@@ -14,19 +14,18 @@ interface NewNote {
 axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 
 
-export const fetchNotes = async(query: string, page: number): Promise<NotesHttpResponse> => {
+export const fetchNotes = async(query: string, page: number, tag?: string): Promise<NotesHttpResponse> => {
     const param = new URLSearchParams({
         ...(query !== "" ? { search: query } : {}),
+        ...(tag !== "" ? { tag } : {}),
         page: page.toString(),
     });
-    const response = await axios.get<NotesHttpResponse> (
-        `/notes?${param}`,
-        {
-            headers: {
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-            },
-        }
-    );
+    const response = await axios.get<NotesHttpResponse>(`/notes?${param}`, {
+        headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+        },
+    });
+    
     return response.data;
 };
 export const fetchNoteById = async (id: number): Promise<Note> => {
