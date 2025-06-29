@@ -9,20 +9,20 @@ interface NotesHttpResponse {
 }
 
 type Props = {
-    params: {slug: string[]};
+    params: {slug?: string[]};
 };
 
 const Notes = async ({ params }: Props) => {
-    const { slug } = params;
-    const category = slug[0] === "All" ? "" : slug[0];
+    const slugArray = params?.slug ?? [];
+    const category = slugArray[0] === 'All' || !slugArray[0] ? '' : slugArray[0];
 
-    const response: NotesHttpResponse = await fetchNotes("", 1, category);
+    const response: NotesHttpResponse = await fetchNotes('', 1, category);
 
     return (
         <section className={css.app}>
             <NotesClient initialValue={response} tag={category} />
         </section>
-  );
+    );
 };
 
 export default Notes;

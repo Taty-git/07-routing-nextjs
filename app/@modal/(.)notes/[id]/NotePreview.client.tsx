@@ -5,7 +5,7 @@ import {useQuery} from '@tanstack/react-query';
 import {useParams} from 'next/navigation';
 import {fetchNoteById} from "../../../../lib/api";
 
-import Modal from '@eslint/eslintrc../../../../components/Modal/Modal';
+import Modal from '../../../../components/Modal/Modal';
 
 const NotePreview = () => {
     const router = useRouter();
