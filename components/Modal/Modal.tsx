@@ -9,7 +9,7 @@ interface Props {
     onClose: () => void;
 }
 
-export default function Modal({children, onClose}: Props) {
+export default function NoteModal({children, onClose}: Props) {
     const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
             onClose();
