@@ -64,7 +64,7 @@ type NotesHttpResponse = {
           </button>
           {isModalOpen && (
             <Modal onClose={closeModal}>
-              <NoteForm onClose={closeModal}/>
+              <NoteForm onClose={closeModal} />
             </Modal>
           )}
         </div>
