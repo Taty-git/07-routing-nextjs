@@ -35,9 +35,6 @@ const NotePreview = () => {
             <p className={css.date}>{note.createdAt}</p>
             <p className={css.tag}>{note.tag}</p>
         
-            <button onClick={close} className={css.backBtn}>
-                Close
-            </button> 
         </div>
        
     </Modal>
