@@ -27,13 +27,17 @@ const Schema = Yup.object().shape({
       .required('Tag is required'),
 });
 
-export default function NoteForm () {
+interface Props {
+    onClose: () => void;
+}
+
+export default function NoteForm({onClose}: Props) {
     const queryClient = useQueryClient();
 
     const mutation = useMutation({
         mutationFn: createNote,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['notes'] });
+            queryClient.invalidateQueries({ queryKey: ["notes"] });
         },
     });
 
@@ -46,9 +50,7 @@ export default function NoteForm () {
             actions.resetForm();
         },
     });
-  };
-
-
+};
 
 return (
     <Formik initialValues={initialValues} validationSchema={Schema} onSubmit={handleSubmit}>
@@ -76,9 +78,12 @@ return (
                     <ErrorMessage name="tag" component="span" className={css.error} />
             </div>
 
-            <div className={css.actions}>
+            <div className={css.actions}>                
                 <button type="submit" className={css.submitButton}>
-                    Create note                    
+                    Create note
+                </button>
+                <button onClick={onClose} className={css.cancelButton}>
+                    Close
                 </button>
             </div>
       </Form>
